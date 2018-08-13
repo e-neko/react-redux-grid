@@ -70,7 +70,8 @@ export const Cell = ({
         rowId,
         selectionModel,
         stateKey,
-        store
+        store,
+        index
     };
 
     const cellProps = {
@@ -82,6 +83,7 @@ export const Cell = ({
         ),
         onClick: (e) => handleClick(cellClickArguments, e),
         onDoubleClick: (e) => handleDoubleClick(cellClickArguments, e),
+        onContextMenu: (e) => handleContextMenu(cellClickArguments, e),
         style: {}
     };
 
@@ -177,7 +179,41 @@ export const getCellHTML = (
 
     return <span children={cellData} />;
 };
+export const handleContextMenu = ({
+    events,
+    columns,
+    cellData,
+    editor,
+    editorState,
+    rowIndex,
+    row,
+    rowId,
+    selectionModel,
+    stateKey,
+    store,
+    index
+}, reactEvent) => {
+    const { CLASS_NAMES } = gridConfig();
 
+    if (reactEvent.target
+        && elementContains(
+            reactEvent.target, prefix(CLASS_NAMES.EDITED_CELL))
+        ) {
+        return;
+    }
+    return fireEvent(
+        'HANDLE_CELL_CONTEXT_MENU',
+        events,
+        {
+            editor,
+            row,
+            rowId,
+            rowIndex,
+            index
+        },
+        reactEvent
+    );
+};
 export const handleClick = ({
     events,
     columns,
@@ -189,7 +225,8 @@ export const handleClick = ({
     rowId,
     selectionModel,
     stateKey,
-    store
+    store,
+    index
 }, reactEvent) => {
 
     const { CLASS_NAMES } = gridConfig();
@@ -242,7 +279,8 @@ export const handleClick = ({
             editor,
             row,
             rowId,
-            rowIndex
+            rowIndex,
+            index
         },
         reactEvent
     );
@@ -259,7 +297,8 @@ export const handleDoubleClick = ({
     rowId,
     selectionModel,
     stateKey,
-    store
+    store,
+    index
 }, reactEvent) => {
 
     const { CLASS_NAMES } = gridConfig();
@@ -313,7 +352,8 @@ export const handleDoubleClick = ({
             editor,
             row,
             rowId,
-            rowIndex
+            rowIndex,
+            index
         },
         reactEvent
     );

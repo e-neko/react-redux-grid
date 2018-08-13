@@ -36,7 +36,6 @@ export const Column = ({
     index,
     stateful
 }) => {
-
     if (col.hidden) {
         return false;
     }
@@ -167,7 +166,9 @@ export const Column = ({
             }
         } />
     );
-
+    let headerContent = innerHTML;
+    if (col.headerRenderer && (typeof col.headerRenderer === 'function'))
+        headerContent = col.headerRenderer({ actualIndex, col, columnManager, dragAndDropManager, sortHandle, innerHTML });
     return (
         <th { ...headerProps } >
             { innerHTML }
