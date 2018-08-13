@@ -171,7 +171,7 @@ export const Column = ({
         headerContent = col.headerRenderer({ actualIndex, col, columnManager, dragAndDropManager, sortHandle, innerHTML });
     return (
         <th { ...headerProps } >
-            { innerHTML }
+            { headerContent }
             { dragHandle }
         </th>
     );
