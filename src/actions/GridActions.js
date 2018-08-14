@@ -259,8 +259,9 @@ export const doRemoteSort = ({
                 }
                 else if (response && response.treeData) {
                     let flat = treeToFlatList(response.treeData);
-                    if (!response.showTreeRootNode)
+                    if (!response.showTreeRootNode) {
                         flat = flat.shift();
+                    }
                     // XXX might need currentRecords too?
                     dispatch({
                         type: SET_DATA,
