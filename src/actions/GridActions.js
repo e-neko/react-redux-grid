@@ -257,10 +257,24 @@ export const doRemoteSort = ({
                     });
 
                 }
-
+                else if (response && response.treeData) {
+                    let flat = treeToFlatList(response.treeData);
+                    if (!response.showTreeRootNode)
+                        flat = flat.shift();
+                    // XXX might need currentRecords too?
+                    dispatch({
+                        type: SET_DATA,
+                        data: flat,
+                        total: response.total,
+                        treeData: response.treeData,
+                        success: true,
+                        stateKey,
+                        gridType: 'tree'
+                    });
+                }
                 else {
 
-                    if (response && !response.data) {
+                    if (response && !response.data && !response.treeData) {
                         /* eslint-disable no-console */
                         console.warn(
                             `A response was recieved but no data
