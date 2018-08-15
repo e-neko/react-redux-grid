@@ -8,6 +8,7 @@ import {
 import { setLoaderState } from '../../../actions/plugins/loader/LoaderActions';
 
 import { dismissEditor } from '../../../actions/plugins/editor/EditorActions';
+import { treeToFlatList } from '../../../util/treeToFlatList';
 
 import Api from '../../../util/api';
 
@@ -41,22 +42,37 @@ export const setPageIndexAsync = ({
                 {pageIndex, pageSize}, filterFields, sort
             ).then((response) => {
 
-                if (response && response.data) {
+                if (response && (response.data || response.treeData)) {
 
                     dispatch({
                         type: PAGE_REMOTE,
                         pageIndex: pageIndex,
                         stateKey
                     });
-
-                    dispatch({
-                        type: SET_DATA,
-                        data: response.data,
-                        total: response.total,
-                        currentRecords: response.items,
-                        success: true,
-                        stateKey
-                    });
+                    if (response.data) {
+                        dispatch({
+                            type: SET_DATA,
+                            data: response.data,
+                            total: response.total,
+                            currentRecords: response.items,
+                            success: true,
+                            stateKey
+                        });
+                    }
+                    else {
+                        let flat = treeToFlatList(response.treeData);
+                        if (!response.showTreeRootNode) {
+                            flat = flat.shift();
+                        }
+                        dispatch({
+                            type: SET_DATA,
+                            data: flat,
+                            total: response.total,
+                            treeData: response.treeData,
+                            success: true,
+                            stateKey
+                        });
+                    }
 
                     if (afterAsyncFunc
                         && typeof afterAsyncFunc === 'function') {
