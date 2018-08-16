@@ -2,7 +2,7 @@ export const getTreePathFromId = (flatData, id) => {
     const res = [];
     const node = flatData.find(n => n.get('_id') === id);
     const finder = n => n.get('_id') === lastParentId;
-    let lastParentId = node.get('_id');
+    let lastParentId = node ? node.get('_id') : undefined;
 
     while (lastParentId !== undefined) {
         const parent = flatData.find(finder);
