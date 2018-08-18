@@ -33,7 +33,7 @@
     "test:watch": "karma start ./test/karma.config.js -- --no-single-run --no-suppress-error-summary",
     "precommit": "npm run lint",
     "prepush": "npm run test",
-    "prepare": "npm install && rm -rf ./node_modules"
+    "prepare": "npm run dist && rm -rf ./node_modules"
   },
   "dependencies": {
     "array-from": "^2.1.1",
