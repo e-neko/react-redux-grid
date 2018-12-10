@@ -170,10 +170,11 @@ class FixedHeader extends Component {
 
         const headerDOM = ReactDOM.findDOMNode(this);
 
-        this.HEADER_HEIGHT = headerDOM.clientHeight;
+        this.HEADER_HEIGHT = 0;
 
         if (isSticky && !this._scrollListener) {
             const tableHeight = headerDOM.parentNode.clientHeight;
+            this.HEADER_HEIGHT = headerDOM.clientHeight;
             this.createScrollListener(
                 plugins.STICKY_HEADER, headerDOM, tableHeight
             );
