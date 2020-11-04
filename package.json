@@ -24,7 +24,7 @@
     "hot": "webpack-dev-server --hot --config webpack/webpack.config.hot.js",
     "lint": "eslint ./",
     "prepublish": "npm run dist",
-    "prepack": "babel ./src --out-dir dist",
+    "prepack": "npm run dist",
     "postinstall": "rm -rf ./node_modules",
     "report-coverage": "codecov",
     "start": "concurrently \"npm run hot\" \"npm run demo\"",
