@@ -1,6 +1,6 @@
 {
   "name": "@e-neko/react-redux-grid",
-  "version": "5.6.2",
+  "version": "5.6.3",
   "description": "A React Grid Component written in the Redux Pattern",
   "author": "Bejamin Cripps",
   "contributors": [
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "array-from": "^2.1.1",
-    "deep-equal": "^1.0.1",
+    "deep-equal": "1.0.1",
     "immutable": "^3.8.1",
     "prop-types": "^15.5.10",
     "react-dnd": "^2.2.4",
