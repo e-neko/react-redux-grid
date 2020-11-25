@@ -1,6 +1,6 @@
 {
   "name": "@e-neko/react-redux-grid",
-  "version": "5.6.3",
+  "version": "5.6.4",
   "description": "A React Grid Component written in the Redux Pattern",
   "author": "Bejamin Cripps",
   "contributors": [
@@ -17,7 +17,7 @@
   "bugs": "https://github.com/bencripps/react-redux-grid/issues",
   "homepage": "http://react-redux-grid.herokuapp.com/",
   "main": "dist/index.js",
-  "repository": "bencripps/react-redux-grid",
+  "repository": "e-neko/react-redux-grid",
   "scripts": {
     "demo": "http-server -p 3000 ./demo",
     "dist": "babel ./src --out-dir dist",
